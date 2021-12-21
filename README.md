@@ -1,1 +1,1 @@
-# sorting_algorithms
+This lesson is all about sorting_algorithms
