@@ -11,13 +11,15 @@ void merge_sort(int *array, size_t size)
     int start = 0;
     int end = size - 1;
     int mid = (start + end) / 2;
+    int *temp_array = malloc(sizeof(int) * (end + start - 1));
     /* check for array existence and size > 1 */
     if (!array || size < 2)
         return;
     /* begin division of array and subsquent merge */
-    mergeSort(array, start, mid);
-    mergeSort(array, mid + 1, end);
-    merge(array, start, mid, end);
+    mergeSort(array, start, mid, temp_array);
+    mergeSort(array, mid + 1, end, temp_array);
+    merge(array, start, mid, end, temp_array);
+    free(temp_array);
 }
 
 /**
@@ -26,14 +28,14 @@ void merge_sort(int *array, size_t size)
  * @start: starting index.
  * @end: ending index.
  */
-void mergeSort(int *array, int start, int end)
+void mergeSort(int *array, int start, int end, int *temp_array)
 {
     /* determine if further division is necessary and then merge */
     if(start < end) {
         int mid = ((start + end - 1) / 2);
-        mergeSort(array, start, mid);
-        mergeSort(array, mid + 1, end);
-        merge(array, start, mid, end);
+        mergeSort(array, start, mid, temp_array);
+        mergeSort(array, mid + 1, end, temp_array);
+        merge(array, start, mid, end, temp_array);
     }
 }
 
@@ -44,9 +46,8 @@ void mergeSort(int *array, int start, int end)
  * @mid: middle index.
  * @end: ending index.
  */
-void merge(int *array, int start, int mid, int end)
+void merge(int *array, int start, int mid, int end, int *temp_array)
 {
-    int *temp_array = malloc(sizeof(int) * (end + start - 1));
     int i = start, j = mid + 1, k = 0;
     int x;
     printf("Merging...\n");
@@ -95,5 +96,4 @@ void merge(int *array, int start, int mid, int end)
         else
             printf("\n");
     }
-    free(temp_array);
 }
