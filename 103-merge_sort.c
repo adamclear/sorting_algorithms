@@ -11,7 +11,8 @@ void merge_sort(int *array, size_t size)
     if (!array || size < 2)
         return;
     /* determine start/mid/end points */
-    int start = 0, end = size - 1;
+    int start = 0;
+    int end = size - 1;
     int mid = (start + end) / 2;
     /* begin division of array and subsquent merge */
     mergeSort(array, start, mid);
@@ -28,12 +29,8 @@ void merge_sort(int *array, size_t size)
 void mergeSort(int *array, int start, int end)
 {
     /* determine if further division is necessary and then merge */
-    // printf("Hit function!\n");
-    // printf("%d\n", start);
-    // printf("%d\n", end);
     if(start < end) {
         int mid = ((start + end - 1) / 2);
-        // printf("%d\n", mid);
         mergeSort(array, start, mid);
         mergeSort(array, mid + 1, end);
         merge(array, start, mid, end);
@@ -50,7 +47,8 @@ void mergeSort(int *array, int start, int end)
 void merge(int *array, int start, int mid, int end)
 {
     printf("Merging...\n");
-    int temp_array[end - start + 1];
+    int array_len = end + start - 1;
+    int temp_array[array_len];
     int i = start, j = mid + 1, k = 0;
     int x;
     printf("[left]: ");
