@@ -35,6 +35,7 @@ void mergeSort(int *array, int start, int end, int *temp_array)
 	if (start < end)
 	{
 		int mid = ((start + end - 1) / 2);
+
 		mergeSort(array, start, mid, temp_array);
 		mergeSort(array, mid + 1, end, temp_array);
 		merge(array, start, mid, end, temp_array);
@@ -53,6 +54,7 @@ void merge(int *array, int start, int mid, int end, int *temp_array)
 {
 	int i = start, j = mid + 1, k = 0;
 	int x;
+
 	printf("Merging...\n");
 	printf("[left]: ");
 	for (x = i; x < j; x++)
@@ -74,28 +76,20 @@ void merge(int *array, int start, int mid, int end, int *temp_array)
 	{
 		if (array[i] <= array[j])
 		{
-			temp_array[k] = array[i];
-			k++;
-			i++;
+			temp_array[k] = array[i], k++, i++;
 		}
 		else
 		{
-			temp_array[k] = array[j];
-			k++;
-			j++;
+			temp_array[k] = array[j], k++, j++;
 		}
 	}
-	while(i <= mid)
+	while (i <= mid)
 	{
-		temp_array[k] = array[i];
-		k++;
-		i++;
+		temp_array[k] = array[i], k++, i++;
 	}
-	while(j <= end)
+	while (j <= end)
 	{
-		temp_array[k] = array[j];
-		k++;
-		j++;
+		temp_array[k] = array[j], k++, j++;
 	}
 	printf("[Done]: ");
 	for (i = start; i <= end; i++)
