@@ -53,24 +53,13 @@ void mergeSort(int *array, int start, int end, int *temp_array)
 void merge(int *array, int start, int mid, int end, int *temp_array)
 {
 	int i = start, j = mid + 1, k = 0;
-	int x;
 
 	printf("Merging...\n");
 	printf("[left]: ");
-	for (x = i; x < j; x++)
-	{
-		printf("%d", array[x]);
-		if (x < (j - 1))
-			printf(", ");
-	}
+	print_half(array, start, mid + 1);
 	printf("\n");
 	printf("[right]: ");
-	for (; x < end + 1; x++)
-	{
-		printf("%d", array[x]);
-		if (x < end)
-			printf(", ");
-	}
+	print_half(array, j, end + 1);
 	printf("\n");
 	while (i <= mid && j <= end)
 	{
@@ -100,5 +89,23 @@ void merge(int *array, int start, int mid, int end, int *temp_array)
 			printf(", ");
 		else
 			printf("\n");
+	}
+}
+
+/**
+ * print_half - prints the portion of the array based on the indexes passed.
+ * @array: the array to be printed.
+ * @start: starting index.
+ * @end: ending index.
+ */
+void print_half(int *array, int start, int end)
+{
+	int x;
+
+	for (x = start; x < end; x++)
+	{
+		printf("%d", array[x]);
+		if (x < (end - 1))
+			printf(", ");
 	}
 }
