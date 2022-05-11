@@ -39,7 +39,7 @@ void merge(int *array, int start, int mid, int end, int *temp_array);
 void print_half(int *array, int start, int end);
 
 void heap_sort(int *array, size_t size);
-void heapify(int *array, int parent, int size);
-void swap(int *array, int size, int *x, int *y);
+void heapify(int *array, int parent, int size, int array_len);
+void swap(int *x, int *y);
 
 #endif

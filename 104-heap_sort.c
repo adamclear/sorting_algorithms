@@ -8,16 +8,21 @@
 void heap_sort(int *array, size_t size)
 {
 	int parent;
+	int array_len = size;
 
 	if (!array || size < 2)
 		return;
 
-	for (parent = size / 2 - 1; parent >= 0; parent--)
-		heapify(array, size, parent);
-	for (parent = size - 1; parent >= 0; parent--)
+	for (parent = ((size / 2) - 1); parent >= 0; parent--)
 	{
-		swap(array, size, &array[0], &array[parent]);
-		heapify(array, parent, 0);
+		heapify(array, size, parent, array_len);
+	}
+	for (parent = (size - 1); parent >= 0; parent--)
+	{
+		swap(&array[0], &array[parent]);
+		if (parent > 0)
+			print_array(array, array_len);
+		heapify(array, parent, 0, array_len);
 	}
 }
 
@@ -25,9 +30,10 @@ void heap_sort(int *array, size_t size)
  * heapify - finds the children of the parent and swaps if necessary.
  * @array: pointer to the array.
  * @parent: current parent node.
- * @size: size of the array
+ * @size: size of the heap to build.
+ * @array_len: size of the array.
  */
-void heapify(int *array, int size, int parent)
+void heapify(int *array, int size, int parent, int array_len)
 {
 	int largest = parent;
 	int lidx = 2 * parent + 1;
@@ -39,21 +45,20 @@ void heapify(int *array, int size, int parent)
 		largest = ridx;
 	if (largest != parent)
 	{
-		swap(array, size, &array[parent], &array[largest]);
-		heapify(array, size, largest);
+		swap(&array[parent], &array[largest]);
+		print_array(array, array_len);
+		heapify(array, size, largest, array_len);
 	}
 }
 
 /**
  * swap - swaps the position of two elements.
- * @array: pointer to the array.
  * @x: first element to be swapped.
  * @y: second element to be swapped.
  */
-void swap(int *array, int size, int *x, int *y)
+void swap(int *x, int *y)
 {
 	int temp = *x;
 	*x = *y;
 	*y = temp;
-	print_array(array, size);
 }
