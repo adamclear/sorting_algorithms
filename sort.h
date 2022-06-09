@@ -42,4 +42,6 @@ void heap_sort(int *array, size_t size);
 void heapify(int *array, int parent, int size, int array_len);
 void swap(int *x, int *y);
 
+void radix_sort(int *array, size_t size);
+
 #endif
