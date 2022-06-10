@@ -17,15 +17,20 @@ int *count_sort(int *array, int *temp_arr, int size, int place)
 	count_arr = malloc(sizeof(int) * 10);
 	if (!count_arr)
 		return (temp_arr);
+	/* set count_arr to all 0 */
 	for (y = 0; y < 10; y++)
 		count_arr[y] = 0;
+	/* moves through array and increments the positions of count_arr */
+	/* for each significant digit found */
 	for (y = 0; y < size; y++)
 	{
 		num = (array[y] / place) % 10;
 		count_arr[num]++;
 	}
+	/* finds cumulative frequency of significant digits */
 	for (y = 1; y < 10; y++)
 		count_arr[y] += count_arr[y - 1];
+	/* fixes values into the temp_arr */
 	for (z = (size - 1); z >= min; z--)
 	{
 		num = (array[z] / place) % 10;
