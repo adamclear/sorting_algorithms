@@ -9,8 +9,8 @@
  */
 void radix_sort(int *array, size_t size)
 {
-    size_t n_dig, place, num, x, y, min = 0;
-    int max;
+    size_t x, y, n_dig;
+    int place, num, z, max, min = 0;
     int *temp_arr, *count_arr;
     if (!array || size < 2)
         return;
@@ -53,10 +53,10 @@ void radix_sort(int *array, size_t size)
         }
         for (y = 1; y < 10; y++)
             count_arr[y] += count_arr[y - 1];
-        for (y = (size - 1); y >= min; y--)
+        for (z = (size - 1); z >= min; z--)
         {
-            num = (array[y]/place) % 10;
-            temp_arr[count_arr[num] - 1] = array[y];
+            num = (array[z]/place) % 10;
+            temp_arr[count_arr[num] - 1] = array[z];
             count_arr[num]--;
         }
         /* update array to the current sort */
